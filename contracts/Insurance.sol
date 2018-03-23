@@ -29,9 +29,9 @@ contract Insurance {
 
 	function addInsurance (address _profileAddress, uint _vehicleId, uint _currentInsuranceNumber, bytes32 _currentExpiryDate, bytes32 _currentInsuranceProvider, uint _previousInsuranceNumber, bytes32 _previousExpiryDate, bytes32 _previousInsuranceProvider) public returns(bool res) {
 
-		if(Profiles(_profileAddress).getProfile(msg.sender)!=stringToBytes32("insuranceAgent")) {
-			return false;
-		}
+//		if(Profiles(_profileAddress).getProfile(msg.sender)!=stringToBytes32("insuranceAgent")) {
+//			return false;
+//		}
 
 		address _agentAddress = msg.sender;
 		bool agentHasVehicle = false;

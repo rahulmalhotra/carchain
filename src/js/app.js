@@ -198,6 +198,24 @@ App = {
       }
 
       var account = accounts[0];
+      App.contracts.Profiles.deployed().then(function(instance) {
+          profileInstance = instance;
+          return profileInstance.getProfile.call(account);
+        }).then(function(result) {
+          if(result) {
+            var profile = web3.toUtf8(result);
+            if(profile!='insuranceagent') {
+              alert("You don't have the necessary permissions to save this insurance");
+              return;
+            }
+          }
+          else 
+            console.log('No profile is associated with your address');
+        }).catch(function(err) {
+          console.log(err.message);
+        });
+
+//     var account = accounts[0];
       App.contracts.Insurance.deployed().then(function(instance) {
           insuranceInstance = instance;
           console.log(insuranceInstance.address);
@@ -219,9 +237,8 @@ App = {
         }).catch(function(err) {
           console.log(err.message);
         });
-      });
-  }
-
+  });
+}
 };
 
 $(function() {
